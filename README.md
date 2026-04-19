@@ -166,9 +166,9 @@ npm run dev
 
 MIT License
 
-## 致谢
 
-本项目重构自武汉大学 GIS 竞赛作品「图图世界」
+
+本项目参考 GIS 竞赛作品「图图世界」
 =======
 # neeko
 map_gis
