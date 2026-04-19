@@ -1,0 +1,24 @@
+#!/bin/sh
+# Maven wrapper script
+
+DIRNAME=$(dirname "$0")
+cd "$DIRNAME" || exit
+APP_HOME=$(pwd)
+
+# Maven version and download URL
+MAVEN_VERSION="3.9.6"
+MAVEN_DOWNLOAD_URL="https://dlcdn.apache.org/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz"
+MAVEN_HOME="${APP_HOME}/maven"
+
+# Download Maven if not found
+if [ ! -d "$MAVEN_HOME" ]; then
+    echo "Downloading Maven..."
+    TEMP_FILE="/tmp/maven-${MAVEN_VERSION}.tar.gz"
+    curl -L -o "$TEMP_FILE" "$MAVEN_DOWNLOAD_URL"
+    tar -xzf "$TEMP_FILE" -C "$APP_HOME"
+    mv "${APP_HOME}/apache-maven-${MAVEN_VERSION}" "$MAVEN_HOME"
+    rm -f "$TEMP_FILE"
+fi
+
+# Execute Maven
+exec "${MAVEN_HOME}/bin/mvn" "$@"
